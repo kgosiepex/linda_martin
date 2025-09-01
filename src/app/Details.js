@@ -99,7 +99,13 @@ const Details = () => (
 		<div className={styles.scheduleContainer}>
 			<h2 className={styles.date}>18.10.25</h2>
 			<div className={styles.timeline}>
-				{scheduleData.map((event, index) => (
+				<div className={styles.line} />
+				<h2 className={styles.scheduleTitle}>Schedule of Events</h2>
+				<div className={styles.schedule}>
+					<h3>We will update you with the event schedule as it becomes available.</h3>
+				</div>
+
+				{/* {scheduleData.map((event, index) => (
 					<div
 						key={index}
 						className={styles.event}
@@ -121,7 +127,7 @@ const Details = () => (
 							{event.description && <p className={styles.description}>{event.description}</p>}
 						</div>
 					</div>
-				))}
+				))} */}
 			</div>
 		</div>
 	</>
