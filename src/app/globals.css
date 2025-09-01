@@ -1,3 +1,28 @@
+/* Overlay for all classes with background-images */
+[class*="background-image"],
+.gSpxyY,
+.rsvp-main {
+  position: relative;
+}
+
+[class*="background-image"]::before,
+.gSpxyY::before,
+.rsvp-main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1;
+  pointer-events: none;
+}
+
+[class*="background-image"]>*,
+.gSpxyY>*,
+.rsvp-main>* {
+  position: relative;
+  z-index: 2;
+}
+
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap');
@@ -111,7 +136,7 @@ h4 {
 h1 {
   font-family: 'Tangerine', cursive !important;
   font-weight: 700;
-  font-size: 12em !important;
+  font-size: 8em !important;
   text-align: center;
   margin: 0.2em 0;
   color: #fff !important;
@@ -493,6 +518,7 @@ a {
   .admin-main {
     padding: 0 20px !important;
   }
+
 
   h3 {
     font-size: 1rem !important;
