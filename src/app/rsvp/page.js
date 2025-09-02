@@ -235,76 +235,41 @@ export default function RSVPPage() {
 	// Step 3: Dietary Requirements & Meal Choices
 	const renderDietMeal = () => (
 		<section className='rsvp-diet-meal'>
-			<h2 className='tangerine-regular'>Dietary Information/Allergies</h2>
+			<h2 className='tangerine-regular'>Dietary Information / Allergies</h2>
 			<textarea
-				placeholder='Please specify any dietary restrictions'
+				placeholder='Please specify any dietary restrictions or allergies'
 				value={diet}
 				onChange={(e) => setDiet(e.target.value)}
 				className='rsvp-input admin-form'
 				rows={4}
 			/>
-			<h2 className='tangerine-regular'>Meal Choice</h2>
-			<div className='container'>
-				<div className='row justify-content-center align-items-center'>
-					{Object.entries(mealOptions).map(([category, options]) => (
-						<div
-							className='col-12 col-md-6 col-lg-3 mb-3 d-flex flex-column align-items-center'
-							key={category}
-						>
-							<label className='text-capitalize fw-semibold mb-2'>{category}</label>
-							<select
-								className='form-select text-center'
-								value={selectedMeals[category] || ''}
-								onChange={(e) => {
-									setSelectedMeals((prev) => ({ ...prev, [category]: e.target.value }));
-								}}
-							>
-								<option value=''>Select {category}</option>
-								{options.map((option) => (
-									<option
-										key={option}
-										value={option}
-									>
-										{option}
-									</option>
-								))}
-							</select>
-						</div>
-					))}
-				</div>
-			</div>
-
 			<button
 				onClick={async () => {
 					if (!guestFound) return;
-					console.log('Selected meals:', selectedMeals);
-					console.log(guestFound);
-					if (Object.values(selectedMeals).some((v) => !v)) return;
 					try {
-						toast.loading('Saving meal choices...');
+						toast.loading('Saving dietary info...');
 						const res = await fetch('/api/admin/guests', {
 							method: 'PUT',
 							headers: { 'Content-Type': 'application/json' },
 							body: JSON.stringify({
 								phone: guestFound.phone,
 								dietary_requirements: diet,
-								...selectedMeals,
 							}),
 						});
 						toast.dismiss();
 						if (res.ok) {
-							toast.success('Meal choices saved!');
+							toast.success('Dietary info saved!');
 							setStep(4);
 						} else {
-							toast.error('Failed to save meal choices.');
+							toast.error('Failed to save dietary info.');
 						}
 					} catch (err) {
 						toast.dismiss();
-						toast.error('Error saving meal choices.');
+						toast.error('Error saving dietary info.');
 					}
 				}}
 				className='admin-button mt-5'
-				disabled={Object.values(selectedMeals).some((v) => !v)}
+				disabled={!diet}
 			>
 				Next
 			</button>

@@ -73,7 +73,8 @@ const Details = () => (
 	<>
 		{/* Dresscode Section */}
 		<div style={{ marginBottom: 32, textAlign: 'center' }}>
-			<h4 className={styles.giftPolicy}>Black Tie Theme</h4>
+			<h4 className={styles.giftPolicy}>Elegant Opulence</h4>
+			<p>Dresscode: Black Tie with hair fascinators.</p>
 			{/* <p
 					className='notify'
 					style={{ marginBottom: 16 }}
