@@ -13,7 +13,7 @@ body::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.6);
   z-index: 1;
   pointer-events: none;
 }
@@ -369,7 +369,7 @@ a {
   height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: bottom right;
+  background-position: center right;
   display: flex;
   flex-direction: column;
   font-size: 12px;
@@ -441,7 +441,7 @@ a {
 .eLtAgX {
   background: var(--background-color);
   border-radius: var(--button-border-radius);
-  border: solid 2px var(--button-color);
+  border: none;
   color: var(--button-color);
   cursor: pointer;
   text-decoration: none;
