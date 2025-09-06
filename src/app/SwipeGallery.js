@@ -38,7 +38,7 @@ const SwipeGallery = () => {
 								maxWidth: '100%',
 								width: 'auto',
 								height: 'auto',
-								maxHeight: '520px',
+								maxHeight: '90vh',
 								borderRadius: 18,
 								margin: '0 auto',
 								background: 'transparent',
@@ -55,7 +55,7 @@ const SwipeGallery = () => {
 			>{`
 				.swiper-button-next,
 				.swiper-button-prev {
-					color: #111 !important;
+					color: #fff !important;
 					background: none;
 					border-radius: 50%;
 					font-size: 1.8rem;
@@ -65,7 +65,7 @@ const SwipeGallery = () => {
 				}
 				.swiper-button-next:after,
 				.swiper-button-prev:after {
-					color: #111 !important;
+					color: #fff !important;
 					font-weight: bold;
 				}
 				.swiper-pagination {

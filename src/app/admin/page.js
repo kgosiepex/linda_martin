@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
+import styles from '../../../public/css/AdminPage.module.css';
 import { toast } from 'react-hot-toast';
 
 export default function AdminPage() {
@@ -94,31 +95,38 @@ export default function AdminPage() {
 	};
 
 	return (
-		<div className='container-fluid py-4'>
-			<main className='admin-main'>
-				<h3
-					className='tangerine-bold mt-2 mb-3'
-					style={{ textAlign: 'center', fontSize: 48 }}
-				>
-					Guest List Admin
-				</h3>
+		<div className={styles.adminMain}>
+			<main>
+				<h2 className={styles.title}>Admin</h2>
 				{addGuestVisible ? (
 					<section
-						className='d-flex justify-content-center'
-						style={{ marginBottom: 32 }}
+						className={styles.section}
+						style={{ background: 'rgba(0,0,0,0.85)' }}
 					>
 						<div>
-							<h2 className='text-center'>Add New Guest</h2>
+							<h3
+								className={styles.sectionTitle}
+								style={{ color: '#fff' }}
+							>
+								Add New Guest
+							</h3>
 							<form
-								className='admin-form'
+								className={styles.form}
 								onSubmit={handleAddGuest}
 								autoComplete='off'
+								style={{ background: 'transparent' }}
 							>
 								<input
 									name='name'
 									placeholder='Name'
 									required
 									ref={nameRef}
+									style={{
+										background: '#111',
+										color: '#fff',
+										width: '100%',
+										boxSizing: 'border-box',
+									}}
 								/>
 								<input
 									name='email'
@@ -126,22 +134,35 @@ export default function AdminPage() {
 									type='email'
 									required
 									ref={emailRef}
+									style={{
+										background: '#111',
+										color: '#fff',
+										width: '100%',
+										boxSizing: 'border-box',
+									}}
 								/>
 								<input
 									name='phone'
 									placeholder='Phone'
 									ref={phoneRef}
+									style={{
+										background: '#111',
+										color: '#fff',
+										width: '100%',
+										boxSizing: 'border-box',
+									}}
 								/>
 								<button
-									className='admin-button w-100'
+									className={styles.button}
 									type='submit'
-									// onClick={handleAddGuest}
+									style={{ background: '#fff', color: '#000' }}
 								>
 									Add Guest
 								</button>
 							</form>
 							<button
-								className='admin-button-secondary mt-3 w-100'
+								className={styles.button}
+								style={{ backgroundColor: '#000', color: '#fff', marginTop: '12px' }}
 								onClick={() => setAddGuestVisible(false)}
 							>
 								Check Guest List
@@ -150,23 +171,26 @@ export default function AdminPage() {
 					</section>
 				) : (
 					<section
-						style={{
-							display: 'flex',
-							flexDirection: 'column',
-							alignItems: 'center',
-							width: '100%',
-						}}
+						className={styles.section}
+						style={{ background: 'rgba(0,0,0,0.85)' }}
 					>
-						<h2 className='mt-5'>Current Invitees</h2>
+						<h3
+							className={styles.sectionTitle}
+							style={{ color: '#fff' }}
+						>
+							Current Invitees
+						</h3>
 						<div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 12 }}>
 							<button
-								className='admin-button-secondary mb-3'
+								className={styles.button}
+								style={{ backgroundColor: '#000', color: '#fff' }}
 								onClick={() => setAddGuestVisible(true)}
 							>
 								Add New Guest
 							</button>
 							<button
-								className='admin-button-secondary mb-3'
+								className={styles.button}
+								style={{ backgroundColor: '#000', color: '#fff' }}
 								onClick={fetchGuests}
 								type='button'
 							>
@@ -174,132 +198,49 @@ export default function AdminPage() {
 							</button>
 						</div>
 						{guestList.length > 0 ? (
-							<div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+							<div style={{ width: '100%', overflowX: 'auto' }}>
 								<table
 									style={{
-										width: '80%',
+										width: '100%',
 										borderCollapse: 'collapse',
 										fontSize: '0.95em',
-										maxWidth: '80%',
+										maxWidth: '100%',
+										background: '#111',
+										color: '#fff',
 									}}
 								>
 									<thead>
-										<tr>
-											<th
-												style={{
-													borderBottom: '1px solid #ccc',
-													textAlign: 'left',
-													padding: '8px',
-												}}
-											>
-												Name
-											</th>
-											<th
-												style={{
-													borderBottom: '1px solid #ccc',
-													textAlign: 'left',
-													padding: '8px',
-												}}
-											>
-												Email
-											</th>
-											<th
-												style={{
-													borderBottom: '1px solid #ccc',
-													textAlign: 'left',
-													padding: '8px',
-												}}
-											>
-												Phone
-											</th>
-											<th
-												style={{
-													borderBottom: '1px solid #ccc',
-													textAlign: 'left',
-													padding: '8px',
-												}}
-											>
-												RSVP
-											</th>
-											<th
-												style={{
-													borderBottom: '1px solid #ccc',
-													textAlign: 'left',
-													padding: '8px',
-												}}
-											>
-												Table
-											</th>
-											<th
-												style={{
-													borderBottom: '1px solid #ccc',
-													textAlign: 'left',
-													padding: '8px',
-												}}
-											>
-												Seat
-											</th>
-											<th
-												style={{
-													borderBottom: '1px solid #ccc',
-													textAlign: 'left',
-													padding: '8px',
-												}}
-											>
-												Food
-											</th>
-											<th
-												style={{
-													borderBottom: '1px solid #ccc',
-													textAlign: 'left',
-													padding: '8px',
-												}}
-											>
-												Drink
-											</th>
-											<th
-												style={{
-													borderBottom: '1px solid #ccc',
-													textAlign: 'left',
-													padding: '8px',
-												}}
-											>
-												Dietary
-											</th>
+										<tr style={{ background: '#222', color: '#fff' }}>
+											<th>Name</th>
+											<th>Email</th>
+											<th>Phone</th>
+											<th>RSVP</th>
+											<th>Table</th>
+											<th>Seat</th>
+											<th>Food</th>
+											<th>Drink</th>
+											<th>Dietary</th>
 										</tr>
 									</thead>
 									<tbody>
 										{guestList.map((guest) => (
-											<tr key={guest.id}>
-												<td style={{ padding: '8px', borderBottom: '1px solid #eee' }}>
-													{guest.name}
-												</td>
-												<td style={{ padding: '8px', borderBottom: '1px solid #eee' }}>
-													{guest.email}
-												</td>
-												<td style={{ padding: '8px', borderBottom: '1px solid #eee' }}>
-													{guest.phone || ''}
-												</td>
-												<td style={{ padding: '8px', borderBottom: '1px solid #eee' }}>
-													{guest.rsvp_status ? 'Yes' : 'No'}
-												</td>
-												<td style={{ padding: '8px', borderBottom: '1px solid #eee' }}>
-													{guest.table ?? ''}
-												</td>
-												<td style={{ padding: '8px', borderBottom: '1px solid #eee' }}>
-													{guest.seat ?? ''}
-												</td>
-												<td style={{ padding: '8px', borderBottom: '1px solid #eee' }}>
+											<tr
+												key={guest.id}
+												style={{ background: 'transparent', color: '#fff' }}
+											>
+												<td>{guest.name}</td>
+												<td>{guest.email}</td>
+												<td>{guest.phone || ''}</td>
+												<td>{guest.rsvp_status ? 'Yes' : 'No'}</td>
+												<td>{guest.table ?? ''}</td>
+												<td>{guest.seat ?? ''}</td>
+												<td>
 													{[guest.starch, guest.protein, guest.salad, guest.dessert]
 														.filter(Boolean)
 														.join(', ')}
 												</td>
-												<td style={{ padding: '8px', borderBottom: '1px solid #eee' }}>
-													{guest.drink || ''}
-												</td>
-												<td style={{ padding: '8px', borderBottom: '1px solid #eee' }}>
-													{guest.dietary_requirements || ''}
-												</td>
+												<td>{guest.drink || ''}</td>
+												<td>{guest.dietary_requirements || ''}</td>
 											</tr>
 										))}
 									</tbody>
@@ -308,17 +249,6 @@ export default function AdminPage() {
 						) : (
 							<p style={{ textAlign: 'center', width: '100%' }}>No guests found.</p>
 						)}
-						<style jsx>{`
-							@media (max-width: 600px) {
-								section {
-									align-items: center !important;
-								}
-								table {
-									width: 100% !important;
-									font-size: 0.9em !important;
-								}
-							}
-						`}</style>
 					</section>
 				)}
 			</main>

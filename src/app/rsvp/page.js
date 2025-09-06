@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import React, { useState } from 'react';
@@ -35,22 +36,22 @@ export default function RSVPPage() {
 	React.useEffect(() => {
 		if (guestFound && guestFound.rsvp_status === true) {
 			setAttendance('yes');
-			// Check if meal info is missing (any of starch, protein, salad, dessert, drink is falsy)
-			const needsMeal =
-				!guestFound.starch ||
-				!guestFound.protein ||
-				!guestFound.salad ||
-				!guestFound.dessert ||
-				!guestFound.drink;
-			if (needsMeal) {
-				setStep(3);
-				toast.loading('Welcome back! Please complete your meal selection.');
-				toast.dismiss();
-			} else {
-				setStep(4);
-				toast.loading('Welcome back! You have already confirmed your attendance.');
-				toast.dismiss();
-			}
+			// // Check if meal info is missing (any of starch, protein, salad, dessert, drink is falsy)
+			// const needsMeal =
+			// 	!guestFound.starch ||
+			// 	!guestFound.protein ||
+			// 	!guestFound.salad ||
+			// 	!guestFound.dessert ||
+			// 	!guestFound.drink;
+			// if (needsMeal) {
+			// 	setStep(3);
+			// 	toast.loading('Welcome back! Please complete your meal selection.');
+			// 	toast.dismiss();
+			// } else {
+			setStep(4);
+			toast.loading('Welcome back! You have already confirmed your attendance.');
+			toast.dismiss();
+			// }
 		}
 	}, [guestFound]);
 
@@ -279,7 +280,20 @@ export default function RSVPPage() {
 	// Step 4: Details
 	const renderSchedule = () => (
 		<section className='rsvp-schedule'>
-			<h2>Wedding Details</h2>
+			<h6
+				style={{
+					fontFamily: 'Open Sans, Helvetica, Arial, sans-serif',
+					fontWeight: 300,
+					fontSize: '1.1em',
+					marginBottom: '1em',
+					marginTop: '1em',
+					textAlign: 'center',
+					textTransform: 'uppercase',
+					letterSpacing: '0.25em',
+				}}
+			>
+				WEDDING DETAILS
+			</h6>
 			<Details />
 			{/* <button
 				onClick={() => setStep(5)}
@@ -310,17 +324,48 @@ export default function RSVPPage() {
 	// );
 
 	return (
-		<main className='rsvp-main'>
-			{step === 1 && renderAttendance()}
-			{step === 2 && renderThankYou()}
-			{step === 3 && attendance === 'yes' && renderDietMeal()}
-			{step === 4 && attendance === 'yes' && renderSchedule()}
-			{step === 5 && attendance === 'yes' && renderLocation()}
-			{step === 3 && attendance === 'no' && (
-				<section className='rsvp-sorry'>
-					<h2>We&apos;re sorry you can&apos;t make it.</h2>
-				</section>
+		<div className='container-fluid min-vh-100 d-flex align-items-center justify-content-center p-0'>
+			{step != 4 ? (
+				<div className='row w-100 h-100 m-0'>
+					{/* Image Section */}
+					<div
+						className='col-12 col-lg-6 d-flex align-items-stretch p-0'
+						style={{ height: '100vh' }}
+					>
+						<div
+							className='w-100 h-100 d-flex flex-grow-1'
+							style={{ height: '100%' }}
+						>
+							<img
+								src='/img/bg_2.png'
+								alt='Linda & Martin Wedding'
+								style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+							/>
+						</div>
+					</div>
+					{/* Content Section */}
+					<div
+						className='col-12 col-lg-6 d-flex flex-column align-items-center justify-content-center text-center p-0'
+						style={{ minHeight: '100%' }}
+					>
+						<main className='rsvp-main w-100'>
+							{step === 1 && renderAttendance()}
+							{step === 2 && renderThankYou()}
+							{step === 3 && attendance === 'yes' && renderDietMeal()}
+							{step === 4 && attendance === 'yes' && renderSchedule()}
+							{step === 5 && attendance === 'yes' && renderLocation()}
+							{step === 3 && attendance === 'no' && (
+								<section className='rsvp-sorry'>
+									<h2>We&apos;re sorry you can&apos;t make it.</h2>
+								</section>
+							)}
+						</main>
+					</div>
+				</div>
+			) : (
+				<div className='row w-100 h-100 m-0'>{attendance === 'yes' && renderSchedule()}</div>
 			)}
-		</main>
+			;
+		</div>
 	);
 }

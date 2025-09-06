@@ -149,6 +149,7 @@ h2 {
   font-family: 'Tangerine', cursive !important;
   font-weight: 400;
   font-size: 6em !important;
+  line-height: 1em;
   text-align: center;
   margin: 0.2em 0;
   color: #fff !important;
@@ -190,7 +191,7 @@ body {
   padding: 0;
   font-size: 16px;
   background-color: #000;
-  background-image: url('/img/bg_1.png');
+  /* background-image: url('/img/bg_1.png'); */
   background-position: right;
 }
 
@@ -365,11 +366,11 @@ a {
 /* Header Styles */
 .gSpxyY {
   background-color: var(--cover-background-color);
-  background-image: url('/img/bg_1.png');
+  /* background-image: url('/img/bg_1.png'); */
   height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center right;
+  background-position: ce right;
   display: flex;
   flex-direction: column;
   font-size: 12px;
@@ -427,7 +428,7 @@ a {
 .jBOaQF {
   color: var(--cover-text-color);
   font-family: 'Tangerine', serif;
-  font-size: var(--date-font-size);
+  font-size: var(--date-font-size) !important;
   font-weight: normal;
   margin: 0;
   line-height: 0.8 !important;
@@ -524,7 +525,7 @@ a {
 
 
   h3 {
-    font-size: 1rem !important;
+    /* font-size: 1rem !important; */
     font-family: 'Tangerine' cursive !important;
   }
 

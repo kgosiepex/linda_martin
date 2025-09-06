@@ -72,27 +72,32 @@ const scheduleData = [
 const Details = () => (
 	<>
 		{/* Dresscode Section */}
-		<div style={{ marginBottom: 32, textAlign: 'center' }}>
-			<h4 className={styles.giftPolicy}>Elegant Opulence</h4>
-			<p>Dresscode: Black Tie with hair fascinators.</p>
-			{/* <p
-					className='notify'
-					style={{ marginBottom: 16 }}
-				>
-					Formal/Black Tie Optional
-					<br />
-					<span style={{ fontSize: '0.95em' }}>
-						Gentlemen: Suits or tuxedos. <br />
-						Ladies: Evening dresses or formal attire. <br />
-						See examples below:
-					</span>
-				</p> */}
-			<SwipeGallery />
+		<div className='container mb-4'>
+			<div className='row align-items-center'>
+				<div className='col-12 col-lg-6 text-center mb-3 mb-lg-0'>
+					<h2 className={styles.giftPolicy}>Elegant Opulence</h2>
+					<p>Dresscode: Black Tie with hair fascinators.</p>
+				</div>
+				<div className='col-12 col-lg-6 d-flex justify-content-center'>
+					<div style={{ width: '100%' }}>
+						<SwipeGallery />
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<div>
-			<h2 className={styles.giftPolicy}>Gift Policy</h2>
-			<p className='notify giftPolicy'>
+			{/* <h2 className={styles.giftPolicy}>Gift Policy</h2> */}
+			<p
+				className='notify giftPolicy mb-3'
+				style={{
+					width: '100%',
+					left: 0,
+					position: 'relative',
+					margin: '0 auto',
+					textAlign: 'center',
+				}}
+			>
 				We kindly request that gifts be strictly limited to{' '}
 				<strong>cash, vouchers, or gift cards</strong> only. Thank you for your understanding.
 			</p>
