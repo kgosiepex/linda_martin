@@ -13,7 +13,7 @@ export default function RSVPPage() {
 	const [pin, setPin] = useState('');
 	const [pinVerified, setPinVerified] = useState(false);
 	const [diet, setDiet] = useState('');
-	const [meal, setMeal] = useState('');
+	const [message, setMessage] = useState('');
 	const [selectedMeals, setSelectedMeals] = useState({
 		starch: '',
 		protein: '',
@@ -57,7 +57,20 @@ export default function RSVPPage() {
 
 	const renderAttendance = () => (
 		<section className='rsvp-attendance'>
-			<h1 className='tangerine-regular'>Will you be attending?</h1>
+			<h6
+				style={{
+					fontFamily: 'Open Sans, Helvetica, Arial, sans-serif',
+					fontWeight: 300,
+					fontSize: '1.1em',
+					marginBottom: '1em',
+					marginTop: '1em',
+					textAlign: 'center',
+					textTransform: 'uppercase',
+					letterSpacing: '0.25em',
+				}}
+			>
+				Login in with your details.
+			</h6>
 			{!guestFound && (
 				<>
 					<p className='notify'>
@@ -127,7 +140,7 @@ export default function RSVPPage() {
 					className='admin-button'
 					disabled={checking}
 				>
-					Check Guestlist
+					Login
 				</button>
 			)}
 			{guestFound && pinVerified && (
@@ -236,41 +249,80 @@ export default function RSVPPage() {
 	// Step 3: Dietary Requirements & Meal Choices
 	const renderDietMeal = () => (
 		<section className='rsvp-diet-meal'>
-			<h2 className='tangerine-regular'>Dietary Information / Allergies</h2>
+			<h6
+				style={{
+					fontFamily: 'Open Sans, Helvetica, Arial, sans-serif',
+					fontWeight: 300,
+					fontSize: '1.1em',
+					marginBottom: '1em',
+					marginTop: '1em',
+					textAlign: 'center',
+					textTransform: 'uppercase',
+					letterSpacing: '0.25em',
+				}}
+			>
+				Dietary Information / Allergies
+			</h6>
+			<p>
+				If you have any dietary restrictions or allergies, please let us know or else just leave
+				blank.
+			</p>
 			<textarea
 				placeholder='Please specify any dietary restrictions or allergies'
 				value={diet}
 				onChange={(e) => setDiet(e.target.value)}
-				className='rsvp-input admin-form'
-				rows={4}
+				className='rsvp-input admin-form mb-3'
+				rows={6}
+			/>
+			<h6
+				style={{
+					fontFamily: 'Open Sans, Helvetica, Arial, sans-serif',
+					fontWeight: 300,
+					fontSize: '1.1em',
+					marginBottom: '1em',
+					marginTop: '6em',
+					textAlign: 'center',
+					textTransform: 'uppercase',
+					letterSpacing: '0.25em',
+				}}
+			>
+				Message to the Couple
+			</h6>
+			<textarea
+				placeholder='Write a message to Linda & Martin (optional)'
+				value={message}
+				onChange={(e) => setMessage(e.target.value)}
+				className='rsvp-input admin-form mb-3'
+				rows={6}
 			/>
 			<button
 				onClick={async () => {
 					if (!guestFound) return;
 					try {
-						toast.loading('Saving dietary info...');
+						toast.loading('Saving info...');
 						const res = await fetch('/api/admin/guests', {
 							method: 'PUT',
 							headers: { 'Content-Type': 'application/json' },
 							body: JSON.stringify({
 								phone: guestFound.phone,
-								dietary_requirements: diet,
+								dietary_requirements: diet || 'None',
+								message: message || 'None',
 							}),
 						});
 						toast.dismiss();
 						if (res.ok) {
-							toast.success('Dietary info saved!');
+							toast.success('Info saved!');
 							setStep(4);
 						} else {
-							toast.error('Failed to save dietary info.');
+							toast.error('Failed to save info.');
 						}
 					} catch (err) {
 						toast.dismiss();
-						toast.error('Error saving dietary info.');
+						toast.error('Error saving info.');
 					}
 				}}
 				className='admin-button mt-5'
-				disabled={!diet}
+				// disabled={!diet}
 			>
 				Next
 			</button>

@@ -14,6 +14,9 @@ const images = [
 	'/img/swipe/AttiresArtboard-3.png',
 	'/img/swipe/AttiresArtboard-4.png',
 	'/img/swipe/AttiresArtboard-5.png',
+	'/img/swipe/AttiresArtboard-6.png',
+	'/img/swipe/AttiresArtboard-7.png',
+	'/img/swipe/AttiresArtboard-8.png',
 ];
 
 const SwipeGallery = () => {

@@ -30,5 +30,8 @@ model Guest {
   // Dietary restrictions
   dietary_requirements String @default("")
 
+  // Message to the couple
+  message String @default("")
+
   reminder_sent Boolean @default(false)
 }

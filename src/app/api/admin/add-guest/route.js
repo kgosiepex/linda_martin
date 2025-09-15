@@ -11,7 +11,7 @@ export async function POST(req) {
 		const phone = formData.get('phone');
 		const pin = formData.get('pin');
 
-		console.log('Received data:', { name, email, phone, pin });
+		// console.log('Received data:', { name, email, phone, pin });
 		if (!name || !email) {
 			return new Response('Missing required fields', { status: 400 });
 		}
@@ -27,7 +27,7 @@ export async function POST(req) {
 			},
 		});
 
-		console.log('Guest created:', guest);
+		// console.log('Guest created:', guest);
 
 		return new Response(JSON.stringify(guest), {
 			status: 201,

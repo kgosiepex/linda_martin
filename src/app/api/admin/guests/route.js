@@ -14,7 +14,7 @@ export async function GET() {
 }
 export async function PUT(req) {
 	console.log('PUT /api/admin/guests called');
-	console.log(req);
+	// console.log(req);
 	const prisma = new PrismaClient();
 	try {
 		const { phone, ...updateData } = await req.json();
