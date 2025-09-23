@@ -1,0 +1,37 @@
+// Prisma schema for wedding guest management
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Guest {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  email        String
+  phone        String?  @unique
+  pin          String?
+  unique_token String   @unique
+  rsvp_status  Boolean? @default(false)
+  table        Int      @default(0)
+  seat         Int      @default(0)
+
+  // Meal choices
+  starch  String @default("")
+  protein String @default("")
+  salad   String @default("")
+  dessert String @default("")
+  drink   String @default("")
+
+  // Dietary restrictions
+  dietary_requirements String @default("")
+
+  // Message to the couple
+  message String @default("")
+
+  reminder_sent Boolean @default(false)
+}
