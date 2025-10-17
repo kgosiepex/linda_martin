@@ -1,0 +1,32 @@
+{
+	"name": "linda-martin-wedding",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "prisma generate && npx prisma db push && next build",
+		"start": "next start",
+		"lint": "eslint",
+		"prisma:generate": "prisma generate",
+		"prisma:migrate": "prisma db push"
+	},
+	"dependencies": {
+		"@prisma/client": "^5.0.0",
+		"bootstrap": "^5.3.7",
+		"cloudinary": "^2.7.0",
+		"dotenv": "^17.2.3",
+		"formidable-serverless": "^1.1.1",
+		"googleapis": "^164.0.0",
+		"next": "15.5.0",
+		"react": "19.1.0",
+		"react-dom": "19.1.0",
+		"react-hot-toast": "^2.6.0",
+		"swiper": "^11.2.10"
+	},
+	"devDependencies": {
+		"@eslint/eslintrc": "^3",
+		"eslint": "^9",
+		"eslint-config-next": "15.5.0",
+		"prisma": "^5.0.0"
+	}
+}
